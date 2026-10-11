@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eaf5fb">
+  <meta name="description" content="Владимир и Анастасия приглашают вас на свадьбу 26 июня 2027 года в Рязани.">
+  <title>Владимир и Анастасия — 26 июня 2027</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Great+Vibes&family=Marck+Script&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f5eee5;
+      --paper-light: #fbf6ef;
+      --ink: #312a25;
+      --muted: #75695f;
+      --line: #c7b8a8;
+      --rose: #cbb6b0;
+      --sage: #aaa99a;
+      --sand: #d8c8b7;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --script: 'Great Vibes', 'Brush Script MT', cursive;
+      --amora: 'Amora Point Demo', 'Marck Script', 'Great Vibes', cursive;
+      --sans: 'Montserrat', Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+    body {
+      margin: 0; color: var(--ink); font-family: var(--serif); font-weight: 400;
+      background: #cfc3b8;
+      background-image:
+        radial-gradient(ellipse at 8% 15%, rgba(255,250,244,.82), transparent 26%),
+        radial-gradient(ellipse at 91% 18%, rgba(246,237,226,.85), transparent 30%),
+        radial-gradient(ellipse at 30% 77%, rgba(164,145,128,.32), transparent 28%),
+        radial-gradient(ellipse at 74% 86%, rgba(250,244,236,.65), transparent 25%),
+        linear-gradient(120deg, #b9aca0 0%, #e8ddd2 43%, #c7b9ac 100%);
+      background-attachment: fixed;
+    }
+    body.locked { overflow: hidden; }
+    a { color: inherit; }
+    button { font: inherit; }
+    .page { width: min(1080px, calc(100% - 32px)); margin: 0 auto; padding: 26px 0 35px; }
+    .nav { display:flex; justify-content:center; flex-wrap:wrap; gap:clamp(15px, 3vw, 34px); margin:0 auto 18px; padding:7px 0 15px; }
+    .nav a { font: 8px var(--sans); letter-spacing:.19em; text-transform:uppercase; text-decoration:none; color:#5f5349; border-bottom:1px solid transparent; padding-bottom:4px; }
+    .nav a:hover { border-color:var(--line); }
+
+    /* The two invitation pages are composed like the printed reference. */
+    .invitation-spread { display:grid; grid-template-columns:1fr 1fr; align-items:stretch; gap:14px; }
+    .paper-panel, .sheet { position:relative; overflow:hidden; background:var(--paper); box-shadow:0 16px 38px rgba(53,40,29,.17), 0 2px 6px rgba(53,40,29,.08); }
+    .paper-panel { min-height:870px; }
+    .paper-panel::before, .sheet::before { content:""; position:absolute; inset:0; pointer-events:none; opacity:.5; background:radial-gradient(ellipse at 0 0, #fff9f1 0, transparent 31%),radial-gradient(ellipse at 100% 100%, #e4d7c8 0, transparent 33%),linear-gradient(135deg,rgba(255,255,255,.18),transparent 48%); }
+    .paper-panel::after, .sheet::after { content:""; position:absolute; inset:8px; border:1px solid rgba(255,255,255,.25); pointer-events:none; }
+    .panel-content { position:relative; z-index:1; padding:34px clamp(25px, 4vw, 47px) 30px; text-align:center; min-height:inherit; display:flex; flex-direction:column; }
+    .panel-topline { display:flex; align-items:flex-start; justify-content:space-between; text-align:left; min-height:84px; }
+    .kicker { margin:0; font:300 8px/1.9 var(--sans); text-transform:uppercase; letter-spacing:.31em; color:#75685d; }
+    .menu-mark { width:31px; display:flex; flex-direction:column; gap:7px; padding-top:2px; flex-shrink:0; }
+    .menu-mark span { display:block; height:1px; background:#4f463e; width:100%; }
+    .menu-mark span:nth-child(2) { width:82%; margin-left:auto; }
+    .short-rule { width:38px; height:1px; background:#b9a999; margin:17px auto; }
+    .date-group { display:grid; grid-template-columns:auto 1px 1fr; align-items:center; justify-content:center; gap:19px; margin:14px 0 4px; text-align:left; }
+    .stacked-date { font-size:clamp(77px, 9.5vw, 124px); line-height:.72; font-style:italic; font-weight:300; letter-spacing:-.055em; font-family:'Phoenix Kursiv';}
+    .stacked-date span { display:block; margin:11px 0; }
+    .date-rule { height:244px; width:1px; background:#a99b8e; }
+    .save-date { font:9px/2 var(--sans); letter-spacing:.32em; text-transform:uppercase; align-self:center; }
+    .branch { position:absolute; pointer-events:none; color:#b7a99a; width:clamp(100px,15vw,170px); height:auto; opacity:.58; }
+    .branch.upper { top:82px; right:3px; transform:rotate(2deg); }
+    .branch.lower { bottom:12px; right:-11px; transform:rotate(8deg) scale(.9); opacity:.52; }
+    .branch.ghost { bottom:280px; left:-43px; transform:rotate(178deg) scale(1.2); opacity:.15; }
+    .names { position:relative; z-index:1; font:clamp(58px, 8vw, 88px)/.88 var(--amora); font-weight:400; margin:43px 0 0; letter-spacing:.005em; color:#4a3d34; font-family:'Dancing Script'; font-style: italic;}
+    .monogram-watermark { position:absolute; z-index:0; inset:0; overflow:hidden; pointer-events:none; color:rgba(143,121,103,.105); }
+    .monogram-watermark span { position:absolute; display:block; font-family:var(--serif); font-style:italic; font-weight:300; line-height:.72; }
+    .monogram-watermark .initial-v { left:5%; top:46%; font-size:clamp(250px, 33vw, 370px); transform:rotate(1deg); font-family:'Dancing Script'; font-style: italic;}
+    .monogram-watermark .initial-a { left:39%; top:58%; font-size:clamp(250px, 33vw, 370px); transform:rotate(1deg); font-family:'Dancing Script'; font-style: italic;}
+    .names .amp { display:block; font-size:.48em; line-height:1; margin:5px 0; }
+    .greeting { font-family:var(--serif); font-size:clamp(25px, 3.1vw, 33px); line-height:1.05; font-weight:300; letter-spacing:.012em; margin:32px 0 13px; }
+    .hero-copy { max-width:410px; margin:0 auto; font-size:17px; line-height:1.22; color:#544941; }
+    .welcome { font-size:30px; margin:22px 0 0; line-height:1; }
+    .welcome-date { font-size:21px; line-height:1.2; margin:7px 0 0; }
+    .handwritten { font:25px var(--amora); color:#76675d; margin:22px 0 0; }
+    .bottom-heart { font-size:27px; line-height:1; color:#958175; margin-top:auto; padding-top:12px; }
+
+    .right-panel .panel-content { padding-left:clamp(24px, 3.8vw, 43px); padding-right:clamp(24px, 3.8vw, 43px); }
+    .right-panel .panel-topline { min-height:90px; }
+    .month-title { position:relative; isolation:isolate; font-size:35px; font-weight:300; font-style:italic; letter-spacing:.01em; margin:0 0 20px; }
+    .month-title::before { content:attr(data-shadow); position:absolute; z-index:-1; left:50%; top:48%; transform:translate(-50%,-50%) rotate(-7deg); font:clamp(54px,8vw,78px)/1 var(--amora); font-style:normal; white-space:nowrap; color:rgba(151,126,108,.17); pointer-events:none; }
+    .calendar { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:2px 0; max-width:365px; margin:0 auto; width:100%; }
+    .calendar span { position:relative; display:grid; place-items:center; min-height:34px; font-size:16px; z-index:1; }
+    .calendar .weekday { font-size:13px; color:#665b52; min-height:27px; }
+    .calendar .selected { font-weight:600; isolation:isolate; min-height:44px; padding-bottom:8px; overflow:visible; }
+    .calendar .selected::before { content:''; position:absolute; z-index:-1; width:42px; height:42px; box-sizing:border-box; border:1px solid #9a8275; border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%); }
+    .calendar .selected::after { content:'♡'; position:absolute; z-index:1; left:50%; bottom:2px; transform:translateX(-50%); font:11px/1 var(--serif); color:#9a8275; pointer-events:none; }
+    .right-section-title { font-family:var(--serif); font-size:28px; line-height:1.04; font-weight:300; letter-spacing:.005em; margin:0 0 12px; }
+    .place-copy { max-width:375px; margin:0 auto; font-size:16px; line-height:1.25; color:#574b41; }
+    .outline-button { display:inline-flex; justify-content:center; align-items:center; gap:8px; min-width:200px; margin-top:12px; padding:8px 18px; border:1px solid #aa9a8b; border-radius:28px; text-decoration:none; font-size:15px; transition:background .2s; }
+    .outline-button:hover { background:#eee3d7; }
+    .dress-copy { max-width:380px; margin:0 auto; font-size:16px; line-height:1.24; }
+    .palette { display:flex; justify-content:center; flex-wrap:wrap; gap:11px; margin:18px 0 4px; }
+    .swatch { width:36px; height:36px; border-radius:50%; box-shadow:0 1px 2px rgba(55,45,35,.05); }
+    .signature { font:clamp(37px,5vw,52px)/.88 var(--amora); margin:12px 0 0; }
+    .signature .amp { display:block; font-size:.55em; margin:3px 0; }
+    .together { font:8px var(--sans); letter-spacing:.45em; margin:21px 0 0; color:#817267; }
+
+    .sheet { margin-top:17px; }
+    .inner { position:relative; z-index:1; padding:clamp(30px,5vw,52px); text-align:center; }
+    .section-title { font-family:var(--serif); font-size:clamp(35px,4.5vw,48px); line-height:1; font-style:italic; font-weight:300; letter-spacing:.005em; margin:0 0 15px; }
+    .amora-title { font-family:var(--amora); font-style:normal; font-weight:400; line-height:1.12; }
+    .amora-script { font-family:var(--amora) !important; font-style:normal; }
+    .shadow-title { position:relative; isolation:isolate; display:table; margin-left:auto; margin-right:auto; }
+    .shadow-title::before { content:attr(data-shadow); position:absolute; z-index:-1; left:50%; top:45%; transform:translate(-50%,-50%) rotate(-5deg); font:clamp(46px,7vw,72px)/1 var(--amora); font-style:normal; font-weight:400; color:rgba(151,126,108,.16); white-space:nowrap; pointer-events:none; }
+    .copy { max-width:620px; margin:0 auto; font-size:17px; line-height:1.35; color:#554940; }
+    .small-copy { font-size:13px; line-height:1.6; color:var(--muted); }
+    .timeline { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:23px; max-width:900px; margin:33px auto 0; text-align:center; }
+    .event { padding:0 14px; position:relative; }
+    .event:not(:last-child)::after { content:""; position:absolute; right:-12px; top:13px; bottom:20px; width:1px; background:#d2c3b4; }
+    .event-time { font-size:36px; font-style:italic; line-height:1; color:#806e60; margin-bottom:14px; }
+    .event h3 { margin:0 0 9px; font-family:var(--serif); font-size:28px; line-height:1.04; font-style:italic; font-weight:300; }
+    .event p { font-size:16px; line-height:1.35; margin:0; color:#65594f; }
+    .map-link { display:inline-block; margin-top:14px; font-size:14px; text-decoration:none; border-bottom:1px solid #bdac9b; padding-bottom:3px; color:#65574b; }
+    .details-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .details-grid .sheet { margin-top:17px; }
+    .details-grid .inner { padding:clamp(28px,4vw,43px); }
+    .divider { height:1px; width:39px; background:#c4b4a4; margin:20px auto; }
+    .script { font-family:var(--script); }
+    .social-links { display:flex; justify-content:center; align-items:flex-start; flex-wrap:wrap; gap:25px; margin:27px auto 0; }
+    .social-link { display:flex; flex-direction:column; align-items:center; gap:9px; min-width:69px; text-decoration:none; font:9px var(--sans); letter-spacing:.1em; text-transform:uppercase; color:#7d7168; }
+    .social-icon { width:51px; height:51px; display:grid; place-items:center; border-radius:14px; box-shadow:0 6px 16px rgba(74,56,34,.08); }
+    .social-icon svg { width:32px; height:32px; display:block; }
+    .social-icon.max { background:#269bd5; color:white; }
+    .social-icon.telegram { background:#2ba7df; color:white; border-radius:50%; }
+    .social-icon.vk { background:#0879ed; color:white; }
+    .button { display:inline-block; padding:13px 25px; border:1px solid #ad9c8b; border-radius:28px; background:transparent; text-decoration:none; font-size:16px; color:#463c34; transition:background .2s,transform .2s; }
+    .button:hover { background:#eee3d7; transform:translateY(-2px); }
+    .footer { text-align:center; padding:25px 10px 12px; color:#5f5146; font:8px/2 var(--sans); letter-spacing:.23em; }
+    .footer .heart { display:block; font:28px var(--serif); color:#998477; letter-spacing:0; margin-bottom:3px; }
+    .reveal { opacity:0; transform:translateY(13px); transition:opacity .7s ease,transform .7s ease; }
+    .reveal.visible { opacity:1; transform:none; }
+
+    /* Envelope opening scene, styled as matching stationery */
+    .intro { position:fixed; inset:0; z-index:9999; display:grid; place-items:center; padding:20px; overflow:hidden;
+      background:radial-gradient(ellipse at 15% 15%,#fffaf4 0,transparent 31%),radial-gradient(ellipse at 85% 82%,#d6c7b9 0,transparent 32%),linear-gradient(125deg,#d0c3b7,#f0e7dc 48%,#c8b9ab); transition:opacity 1s ease,visibility 1s ease; }
+    .intro::before { content:""; position:absolute; inset:12px; border:1px solid rgba(255,250,244,.75); pointer-events:none; }
+    .intro-greeting { position:absolute; top:max(7vh,34px); left:16px; right:16px; text-align:center; font:8px/2 var(--sans); letter-spacing:.32em; color:#6b5c50; text-transform:uppercase; }
+    .envelope-scene { width:min(430px,87vw); position:relative; display:flex; flex-direction:column; align-items:center; transform:translateY(-3px); }
+    .letter { position:absolute; z-index:1; width:78%; height:77%; top:-2%; background:#fbf5ed; border:1px solid #d4c3b2; box-shadow:0 6px 15px rgba(83,60,39,.09); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px; transition:transform 1s cubic-bezier(.2,.7,.2,1),opacity .6s; }
+    .letter p { margin:3px 0; }
+    .letter .mini-title { font:8px/1.8 var(--sans); letter-spacing:.25em; text-transform:uppercase; }
+    .letter .mini-names { font:39px/1 var(--amora); font-weight:400; color:#4a3d34; }
+    .letter .mini-date { font-size:18px; letter-spacing:.15em; margin-top:10px; }
+    .envelope { position:relative; z-index:2; width:100%; aspect-ratio:1.55; margin-top:22%; filter:drop-shadow(0 14px 18px rgba(80,60,40,.15)); }
+    .envelope-back { position:absolute; inset:0; background:#ddcbbb; border:1px solid #bca996; }
+    .envelope-front { position:absolute; inset:0; background:#e8d9c9; clip-path:polygon(0 0,50% 61%,100% 0,100% 100%,0 100%); border-bottom:1px solid #c7b5a1; }
+    .envelope-flap { position:absolute; z-index:4; top:0; left:0; width:100%; height:67%; background:#f2e7da; clip-path:polygon(0 0,100% 0,50% 100%); transform-origin:50% 0; transition:transform 1.15s cubic-bezier(.2,.75,.2,1); backface-visibility:hidden; }
+    .envelope-fold-left,.envelope-fold-right { position:absolute; z-index:3; inset:0; pointer-events:none; }
+    .envelope-fold-left { background:#e3d2c1; clip-path:polygon(0 0,52% 58%,0 100%); }
+    .envelope-fold-right { background:#e5d2bf; clip-path:polygon(100% 0,48% 58%,100% 100%); }
+    .seal { position:absolute; z-index:5; left:50%; top:56%; transform:translate(-50%,-50%); width:53px; height:53px; display:grid; place-items:center; border-radius:50%; background:#a99080; color:#fff8ef; border:1px solid #d7c1ae; font-size:28px; box-shadow:0 2px 8px rgba(93,73,51,.13); transition:opacity .4s,transform .4s; }
+    .intro-button { position:relative; z-index:6; margin-top:29px; border:1px solid #9c8978; background:#f7efe6; padding:14px 28px; border-radius:30px; color:#574a40; text-transform:uppercase; font:8px var(--sans); letter-spacing:.22em; cursor:pointer; transition:background .25s,transform .25s; }
+    .intro-button:hover { background:#fff9f1; transform:translateY(-2px); }
+    .intro-note { text-align:center; font:8px var(--sans); letter-spacing:.16em; color:#77685c; margin-top:15px; text-transform:uppercase; }
+    .intro.opening .envelope-flap { transform:rotateX(180deg); }
+    .intro.opening .seal { opacity:0; transform:translate(-50%,-50%) scale(.6); }
+    .intro.opening .letter { transform:translateY(-78%) rotate(-2deg); }
+    .intro.opening .envelope-scene { animation:envelope-settle 1s 1.1s forwards; }
+    .intro.gone { opacity:0; visibility:hidden; pointer-events:none; }
+    @keyframes envelope-settle { to { transform:translateY(7px) scale(.96); opacity:.3; } }
+    @media (max-width:760px) {
+      .page { width:min(100% - 18px,560px); padding-top:10px; }
+      .nav { gap:11px; padding:7px 0 13px; }
+      .nav a { font-size:7px; letter-spacing:.1em; }
+      .invitation-spread { grid-template-columns:1fr; gap:13px; }
+      .paper-panel { min-height:0; }
+      .left-panel .panel-content { min-height:790px; }
+      .right-panel .panel-content { min-height:775px; }
+      .panel-content { padding:27px 25px 24px; }
+      .panel-topline { min-height:70px; }
+      .stacked-date { font-size:clamp(80px,17vw,112px); }
+      .date-rule { height:225px; }
+      .names { font-size:clamp(66px,14vw,90px); margin-top:35px; }
+      .branch.upper { width:112px; opacity:.44; }
+      .branch.ghost { width:120px; }
+      .timeline { grid-template-columns:1fr; gap:22px; max-width:460px; }
+      .event { padding:0 0 20px; border-bottom:1px solid #e0d4c7; }
+      .event:not(:last-child)::after { display:none; }
+      .event:last-child { border-bottom:0; padding-bottom:0; }
+      .details-grid { grid-template-columns:1fr; gap:0; }
+    }
+    @media (max-width:390px) {
+      .date-group { gap:13px; }
+      .stacked-date { font-size:75px; }
+      .date-rule { height:208px; }
+      .save-date { font-size:8px; letter-spacing:.22em; }
+      .names { font-size:61px; }
+      .greeting { font-size:24px; }
+      .palette { gap:10px; }
+      .swatch { width:32px; height:32px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *,*::before,*::after { scroll-behavior:auto !important; animation-duration:.01ms !important; transition-duration:.01ms !important; }
+    }
+
+    /* Голубая небесная палитра: лёгкая бумага, прохладные акценты и мягкие тени. */
+    :root {
+      --paper: #f2f8fc;
+      --paper-light: #fbfdff;
+      --ink: #2d4050;
+      --muted: #687f91;
+      --line: #b9d0e0;
+      --rose: #bfd9e9;
+      --sage: #9bbfd6;
+      --sand: #dcebf4;
+    }
+    body {
+      color: var(--ink);
+      background: #d9e8f1;
+      background-image:
+        radial-gradient(ellipse at 8% 15%, rgba(255,255,255,.92), transparent 27%),
+        radial-gradient(ellipse at 91% 18%, rgba(239,248,253,.9), transparent 31%),
+        radial-gradient(ellipse at 30% 77%, rgba(116,166,198,.26), transparent 29%),
+        radial-gradient(ellipse at 74% 86%, rgba(248,252,255,.72), transparent 26%),
+        linear-gradient(120deg, #bed5e4 0%, #eaf4fa 44%, #c7deec 100%);
+    }
+    .nav a { color: #536f84; }
+    .paper-panel, .sheet {
+      box-shadow: 0 16px 38px rgba(47,82,105,.14), 0 2px 6px rgba(47,82,105,.07);
+    }
+    .paper-panel::before, .sheet::before {
+      background: radial-gradient(ellipse at 0 0, #ffffff 0, transparent 31%),
+                  radial-gradient(ellipse at 100% 100%, #d9eaf4 0, transparent 34%),
+                  linear-gradient(135deg, rgba(255,255,255,.32), transparent 48%);
+    }
+    .kicker { color: #657f91; }
+    .menu-mark span { background: #58758a; }
+    .short-rule, .divider { background: #abc7da; }
+    .date-rule { background: #91afc4; }
+    .branch { color: #8fb9d2; }
+    svg.branch path[fill] { fill: #a8cce1 !important; }
+    .names { color: #344e63; }
+    .monogram-watermark { color: rgba(74,139,177,.11); }
+    .hero-copy { color: #4b6477; }
+    .handwritten { color: #5f8199; }
+    .bottom-heart, .footer .heart { color: #789fba; }
+    .month-title::before, .shadow-title::before { color: rgba(103,159,193,.18); }
+    .calendar .weekday { color: #658095; }
+    .calendar .selected::before { border-color: #7da7c3; }
+    .calendar .selected::after { color: #6d9bb9; }
+    .right-section-title { color: #344e63; }
+    .place-copy, .copy { color: #4c6375; }
+    .outline-button { border-color: #91b0c6; color: #3e5c72; }
+    .outline-button:hover, .button:hover { background: #e1f0f8; }
+    .dress-copy { color: #4e6577; }
+    .signature { color: #344e63; }
+    .together { color: #6b879a; }
+    .section-title, .event h3 { color: #354e61; }
+    .shadow-title::before { color: rgba(98,157,193,.17); }
+    .copy { color: #4a6173; }
+    .small-copy { color: #71899a; }
+    .event:not(:last-child)::after { background: #c1d8e6; }
+    .event-time { color: #648eaa; }
+    .event p { color: #566d7e; }
+    .map-link { border-color: #a8c6d9; color: #4e7088; }
+    .divider { background: #b6d0e1; }
+    .social-link { color: #617d91; }
+    .social-icon { box-shadow: 0 6px 16px rgba(54,95,122,.12); }
+    .button { border-color: #91b1c7; color: #3c586c; }
+    .footer { color: #597489; }
+    .footer a { border-color: #a9c6d9 !important; }
+    .intro {
+      background: radial-gradient(ellipse at 15% 15%, #ffffff 0, transparent 32%),
+                  radial-gradient(ellipse at 85% 82%, #d5e9f5 0, transparent 34%),
+                  linear-gradient(125deg, #c5ddea, #f0f8fc 48%, #c7dfed);
+    }
+    .intro::before { border-color: rgba(255,255,255,.82); }
+    .intro-greeting, .intro-note { color: #526f83; }
+    .letter { background: #f8fcff; border-color: #bfd5e4; box-shadow: 0 6px 15px rgba(57,93,119,.10); }
+    .letter .mini-names { color: #344e63; }
+    .envelope { filter: drop-shadow(0 14px 18px rgba(54,88,112,.16)); }
+    .envelope-back { background: #b7d3e5; border-color: #8eb2ca; }
+    .envelope-front { background: #c9e0ee; border-bottom-color: #9bbfd5; }
+    .envelope-flap { background: #e2f0f8; }
+    .envelope-fold-left { background: #c0dbea; }
+    .envelope-fold-right { background: #c7e0ef; }
+    .seal { background: #6d9fbe; color: #f8fcff; border-color: #a9cadf; box-shadow: 0 2px 8px rgba(56,92,117,.16); }
+    .intro-button { border-color: #83a8c1; background: #f4faff; color: #3f5e73; }
+    .intro-button:hover { background: #ffffff; }
+    .palette .swatch { box-shadow: 0 2px 6px rgba(50,91,119,.12); }
+
+  </style>
+</head>
+<body>
+  <main class="page" id="top">
+    <nav class="nav" aria-label="Навигация"><a href="#date">Дата</a><a href="#program">Тайминг</a><a href="#wishes">Важные детали</a><a href="#contacts">Контакты</a></nav>
+
+    <section class="invitation-spread reveal visible" id="date" aria-label="Свадебное приглашение">
+      <article class="paper-panel left-panel">
+        <svg class="branch upper" viewBox="0 0 180 280" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M22 266C65 210 105 133 145 15"/><path d="M46 226C20 209 11 186 18 167C42 175 53 199 46 226Z" fill="#c8b8a7" fill-opacity=".27"/><path d="M61 196C88 188 105 169 108 148C82 151 65 170 61 196Z" fill="#c8b8a7" fill-opacity=".27"/><path d="M78 156C53 142 43 121 49 103C71 114 82 134 78 156Z" fill="#c8b8a7" fill-opacity=".27"/><path d="M95 119C119 110 134 91 134 72C111 77 97 95 95 119Z" fill="#c8b8a7" fill-opacity=".27"/><path d="M113 77C93 60 88 39 98 23C117 37 123 57 113 77Z" fill="#c8b8a7" fill-opacity=".27"/></g></svg>
+        <svg class="branch ghost" viewBox="0 0 180 280" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M22 266C65 210 105 133 145 15"/><path d="M46 226C20 209 11 186 18 167C42 175 53 199 46 226Z" fill="#c8b8a7" fill-opacity=".35"/><path d="M61 196C88 188 105 169 108 148C82 151 65 170 61 196Z" fill="#c8b8a7" fill-opacity=".35"/><path d="M78 156C53 142 43 121 49 103C71 114 82 134 78 156Z" fill="#c8b8a7" fill-opacity=".35"/><path d="M95 119C119 110 134 91 134 72C111 77 97 95 95 119Z" fill="#c8b8a7" fill-opacity=".35"/></g></svg>
+        <div class="monogram-watermark" aria-hidden="true"><span class="initial-v">В</span><span class="initial-a">А</span></div>
+        <div class="panel-content">
+          <div class="panel-topline"><p class="kicker">Наша<br>история<br>продолжается</p><span class="menu-mark" aria-hidden="true"><span></span><span></span><span></span></span></div>
+          <div class="date-group"><div class="stacked-date"><span>26</span><span>06</span><span>27</span></div><div class="date-rule"></div><div class="save-date">Save<br>the date</div></div>
+          <p class="names">Владимир <span class="amp">&amp;</span> Анастасия</p>
+          <div class="short-rule"></div>
+          <h1 class="greeting">Дорогие родные и друзья!</h1>
+          <p class="hero-copy">В нашей жизни произойдёт очень важное событие. Мы будем счастливы разделить с вами этот особенный день — день рождения нашей семьи!</p>
+          <div class="short-rule"></div>
+          <p class="welcome">Ждём Вас!</p>
+          <p class="welcome-date">26 июня 2027 года<br>в 15:00 · Рязань</p>
+          <p class="handwritten">Счастье — в близких людях</p>
+          <div class="bottom-heart" aria-hidden="true">♡</div>
+        </div>
+      </article>
+
+      <article class="paper-panel right-panel">
+        <svg class="branch lower" viewBox="0 0 180 280" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M22 266C65 210 105 133 145 15"/><path d="M46 226C20 209 11 186 18 167C42 175 53 199 46 226Z" fill="#c8b8a7" fill-opacity=".27"/><path d="M61 196C88 188 105 169 108 148C82 151 65 170 61 196Z" fill="#c8b8a7" fill-opacity=".27"/><path d="M78 156C53 142 43 121 49 103C71 114 82 134 78 156Z" fill="#c8b8a7" fill-opacity=".27"/><path d="M95 119C119 110 134 91 134 72C111 77 97 95 95 119Z" fill="#c8b8a7" fill-opacity=".27"/><path d="M113 77C93 60 88 39 98 23C117 37 123 57 113 77Z" fill="#c8b8a7" fill-opacity=".27"/></g></svg>
+        <div class="panel-content">
+          <div class="panel-topline"><p class="kicker"><span>Важные</span><br><span>детали</span><br><span>нашего дня</span></p><span class="menu-mark" aria-hidden="true"><span></span><span></span><span></span></span></div>
+          <h2 class="month-title">Июнь</h2>
+          <div class="calendar" id="calendar" aria-label="Календарь июня 2027 года"></div>
+          <div class="short-rule" style="margin-top:24px"></div>
+          <h2 class="right-section-title">Место проведения</h2>
+          <p class="place-copy">Дворец торжеств города Рязани<br>Московское шоссе, 49</p>
+          <a class="outline-button" href="https://www.google.com/maps/search/?api=1&amp;query=Дворец+торжеств,+Московское+шоссе,+49,+Рязань" target="_blank" rel="noopener noreferrer">Открыть карту <span aria-hidden="true">⌖</span></a>
+          <p class="place-copy" style="margin-top:12px;font-size:15px">После росписи встречаемся в комплексе «Джан-Туган», г. Рязань.</p>
+          <div class="short-rule" style="margin-top:20px"></div>
+          <h2 class="right-section-title">Дресс-код</h2>
+          <p class="dress-copy">Нам будет приятно, если вы поддержите лёгкое, воздушное настроение нашего праздника. Будут чудесно смотреться нарядные образы в небесных и голубых оттенках: от нежно-голубого, пудрового и цвета облаков до василькового, стального и глубокого синего. Также подойдут молочный, жемчужно-серый, серебристый, бежевый и другие спокойные пастельные тона.</p>
+          <div class="palette" aria-label="Палитра дресс-кода"><span class="swatch" style="background:#eaf5fb" title="Облачный бело-голубой"></span><span class="swatch" style="background:#c7e3f2" title="Небесный голубой"></span><span class="swatch" style="background:#a4cfe7" title="Пудрово-голубой"></span><span class="swatch" style="background:#80b4d4" title="Васильковый"></span><span class="swatch" style="background:#587f9e" title="Глубокий сине-голубой"></span><span class="swatch" style="background:#d8dce2" title="Жемчужно-серый"></span><span class="swatch" style="background:#e8ddce" title="Мягкий бежевый"></span></div>
+          <p class="small-copy" style="margin:10px auto 0;max-width:380px">Это лишь подсказка, а не строгое правило: выбирайте комфортный вам наряд. Главное — праздничное настроение и ваше присутствие ♡</p>
+          <div class="short-rule" style="margin-top:19px"></div>
+          <p style="font-size:21px;margin:0">С любовью,</p>
+          <p class="signature">Владимир <span class="amp">&amp;</span> Анастасия</p>
+          <p class="together">ВМЕСТЕ ВСЕГДА</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="sheet reveal" id="program">
+      <div class="inner"><p class="kicker">Давайте проведём этот день вместе</p><h2 class="section-title shadow-title">Тайминг свадьбы</h2><p class="copy">Чтобы вам было удобно планировать день, мы собрали главные моменты в одном месте.</p>
+        <div class="timeline">
+          <article class="event"><div class="event-time">15:00</div><h3>Роспись</h3><p>Дворец торжеств города Рязани<br>Московское шоссе, 49</p><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Дворец+торжеств,+Московское+шоссе,+49,+Рязань" target="_blank" rel="noopener noreferrer">Открыть карту ↗</a></article>
+          <article class="event"><div class="event-time">17:00</div><h3>Встреча и расселение гостей</h3><p>Комплекс «Джан-Туган»<br>г. Рязань</p><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Джан-Туган,+Рязань" target="_blank" rel="noopener noreferrer">Открыть карту ↗</a></article>
+          <article class="event"><div class="event-time">17:30</div><h3>Начало банкета</h3><p>Комплекс «Джан-Туган»<br>г. Рязань</p><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Джан-Туган,+Рязань" target="_blank" rel="noopener noreferrer">Открыть карту ↗</a></article>
+        </div>
+      </div>
+    </section>
+
+    <div class="details-grid">
+      <section class="sheet reveal" id="wishes"><div class="inner"><p class="kicker">Несколько маленьких просьб</p><h2 class="section-title">Важные детали</h2><p class="copy">Нам хочется, чтобы этот день был лёгким, радостным и комфортным для каждого из вас.</p><div class="divider"></div><p class="copy"><strong>Возьмите, пожалуйста, купальные принадлежности.</strong><br>Захватите всё необходимое для водного отдыха, чтобы можно было расслабиться и в полной мере насладиться праздником.</p><div class="divider"></div><p class="copy"><strong>Вместо букетов цветов</strong> мы будем рады бутылке хорошего алкоголя, которую сможем открыть в один из будущих счастливых дней и вспомнить наш волшебный праздник. Оставьте бутылку, пожалуйста, в велком-зоне и добавьте небольшую записку с подсказкой, на какой праздник вы предлагаете её открыть — например, на годовщину, новоселье или другое радостное событие. Нам будет очень приятно сохранить такую тёплую память!</p><div class="divider"></div><p class="copy">Мы мечтаем о камерном празднике в кругу взрослых, поэтому свадьба пройдёт в формате <strong>вечера только для взрослых, без детей</strong>. Будем очень признательны за ваше понимание и поддержку нашего решения.</p><p class="script amora-script" style="font-size:31px;margin:22px 0 0">Спасибо, что вы с нами ♡</p></div></section>
+      <section class="sheet reveal" id="contacts"><div class="inner"><p class="kicker">Всегда на связи</p><h2 class="section-title amora-title">Контакты</h2><p class="copy">Если появятся вопросы по организации или маршруту, напишите нам — с радостью поможем.</p><p class="script amora-script" style="font-size:38px;margin:18px 0 0">Владимир и Анастасия</p>
+        <div class="social-links" aria-label="Связаться с нами">
+          <a class="social-link" href="https://max.ru/ВАША_ССЫЛКА" target="_blank" rel="noopener noreferrer" aria-label="Написать в MAX"><span class="social-icon max"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 12h6l10 13 10-13h6v24h-6V21L24 34 14 21v15H8z" fill="currentColor"/><path d="M32 36h8l-4-6z" fill="#d8f2ff"/></svg></span><span>MAX</span></a>
+          <a class="social-link" href="https://t.me/ВАШ_НИК" target="_blank" rel="noopener noreferrer" aria-label="Написать в Telegram"><span class="social-icon telegram"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M40.6 8.5 34 39c-.5 2.2-1.8 2.7-3.7 1.7l-10.2-7.5-4.9 4.7c-.5.5-1 .9-2 .9l.7-10.4L32.8 11.3c.8-.7-.2-1.2-1.3-.5L9.3 24.9 0 22c-2.1-.7-2.1-2 .4-2.9L37 5.7c2-.7 3.8.5 3.6 2.8Z" fill="currentColor" transform="translate(4 2) scale(.9)"/></svg></span><span>Telegram</span></a>
+          <a class="social-link" href="https://vk.com/ВАША_СТРАНИЦА" target="_blank" rel="noopener noreferrer" aria-label="Написать во ВКонтакте"><span class="social-icon vk"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 14h7c.6 9 4 12.5 6.8 13.4V14h6.7v7.5c2.7-.3 6.2-3.7 7.3-7.5h6.7c-.7 4.3-4.5 8-6.7 9.6 2.2 1.4 6.7 4.5 8 10.9h-7.5c-1.2-4-4.3-7.1-7.8-7.5V35h-.8C14.8 35 7.7 27.2 6 14Z" fill="currentColor"/></svg></span><span>ВКонтакте</span></a>
+        </div><p class="small-copy" style="margin-top:22px">Будем рады вашим сообщениям ♡</p></div></section>
+    </div>
+
+    <section class="sheet reveal" id="second-day"><div class="inner"><p class="kicker">Это ещё не всё</p><h2 class="section-title amora-title">Продолжим праздник?</h2><p class="copy">Будем рады провести с вами ещё один день — в тёплой, непринуждённой атмосфере.</p><a class="button" style="margin-top:24px" href="second-day.html">Приглашение на второй день ♡</a><p class="small-copy" style="margin-top:12px">Кнопка откроет отдельную страницу приглашения на второй день.</p></div></section>
+    <footer class="footer"><span class="heart">♡</span>ВЛАДИМИР &amp; АНАСТАСИЯ<br>26 ИЮНЯ 2027 · С ЛЮБОВЬЮ<br><a href="#top" style="display:inline-block;margin-top:9px;text-decoration:none;border-bottom:1px solid #c3b2a3">Наверх ↑</a></footer>
+  </main>
+  <script>
+    (function drawCalendar() {
+      const calendar = document.getElementById('calendar');
+      ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'].forEach(day => { const c=document.createElement('span'); c.className='weekday'; c.textContent=day; calendar.appendChild(c); });
+      const offset=(new Date(2027,5,1).getDay()+6)%7;
+      for(let i=0;i<offset;i++){const c=document.createElement('span');c.setAttribute('aria-hidden','true');calendar.appendChild(c);}
+      for(let day=1;day<=30;day++){const c=document.createElement('span');c.textContent=day;if(day===26){c.className='selected';c.setAttribute('aria-label','26 июня — день свадьбы');}calendar.appendChild(c);}
+    })();
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => entries.forEach(entry => { if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);} }), {threshold:.06});
+      document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+    } else document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
+  </script>
+</body>
+</html>
